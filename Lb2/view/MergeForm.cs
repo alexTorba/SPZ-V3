@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Lb2
 {
-    public partial class Form1 : Form
+    public partial class MergeForm : Form
     {
-        public Form1()
+        public MergeForm()
         {
             InitializeComponent();
         }
