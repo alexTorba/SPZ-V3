@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Lb2
 {
-    public partial class AddForm : Form
+    public partial class AddProfessor : Form
     {
-        public AddForm()
+        public AddProfessor()
         {
             InitializeComponent();
         }

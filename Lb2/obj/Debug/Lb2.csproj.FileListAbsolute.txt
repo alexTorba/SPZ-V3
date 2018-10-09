@@ -7,6 +7,7 @@ C:\Users\Александр\source\repos\Spz-V3\Lb2\obj\Debug\Lb2.csproj.Generat
 C:\Users\Александр\source\repos\Spz-V3\Lb2\obj\Debug\Lb2.csproj.CoreCompileInputs.cache
 C:\Users\Александр\source\repos\Spz-V3\Lb2\obj\Debug\Lb2.exe
 C:\Users\Александр\source\repos\Spz-V3\Lb2\obj\Debug\Lb2.pdb
-C:\Users\Александр\source\repos\Spz-V3\Lb2\obj\Debug\Lb2.AddForm.resources
 C:\Users\Александр\source\repos\Spz-V3\Lb2\obj\Debug\Lb2.MainForm.resources
 C:\Users\Александр\source\repos\Spz-V3\Lb2\obj\Debug\Lb2.MergeForm.resources
+C:\Users\Александр\source\repos\Spz-V3\Lb2\obj\Debug\Lb2.AddStudent.resources
+C:\Users\Александр\source\repos\Spz-V3\Lb2\obj\Debug\Lb2.AddUniversity.resources

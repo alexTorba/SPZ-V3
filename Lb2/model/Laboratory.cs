@@ -8,6 +8,10 @@ namespace Lb2
 {
     class Laboratory
     {
-        public int Name { get; set; }
+        public string Name { get; set; }
+        public Laboratory(string name)
+        {
+            this.Name = name;
+        }
     }
 }

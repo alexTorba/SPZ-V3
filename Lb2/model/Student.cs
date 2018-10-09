@@ -124,6 +124,7 @@ namespace Lb2
         {
             return 0;
         }
+
         public override string ToString()
         {
             return $"{Name} {Course} {recordBook}, AvaragePoint: {AvaragePoint}";

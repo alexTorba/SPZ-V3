@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace Lb2
 {
-    class Staff<T> : ICollection<T> where T : class
+    class Employee<T> : ICollection<T> where T : class
     {
         public string Name { get; set; }
         private readonly List<T> audience = new List<T>();
 
-        public Staff(string name)
+        public Employee(string name)
         {
             Name = name;
         }
 
-        public Staff(string name, params T[] audience) : this(name)
+        public Employee(string name, params T[] audience) : this(name)
         {
             this.audience.AddRange(audience);
         }
@@ -28,7 +28,7 @@ namespace Lb2
 
         public void Add(T auditory)
         {
-            if (Count < 10)
+            if (Count < 2)
                 audience.Add(auditory);
             else throw new ArgumentOutOfRangeException("Staff can have up to 2 audience");
         }

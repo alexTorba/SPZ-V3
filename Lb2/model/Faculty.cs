@@ -8,6 +8,11 @@ namespace Lb2
 {
     class Faculty
     {
-        public int Name { get; set; }
+        public string Name { get; set; }
+
+        public Faculty(string name)
+        {
+            this.Name = name;
+        }
     }
 }
