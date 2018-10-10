@@ -12,9 +12,51 @@ namespace Lb2_V2._0
 {
     public partial class Form1 : Form
     {
+
+        List<University> universities = new List<University>();
+
         public Form1()
         {
             InitializeComponent();
+
+            Binding();
+        }
+
+        public void Binding()
+        {
+            dataGrid.DataSource = universities.ToList();
+            dataGrid.Refresh();
+        }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddUniversity addUniversity = new AddUniversity();
+            if (addUniversity.ShowDialog() == DialogResult.OK)
+            {
+                universities.Add(addUniversity.University);
+                Binding();
+            }
+        }
+
+        private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+
+        private void dataGrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView dataGrid = sender as DataGridView;
+
+            University choosenUn = (University)universities.FindById((int)dataGrid.SelectedRows[0].Cells[0].Value);
+
+            EditUniversity editUniversity = new EditUniversity(choosenUn);
+
+            if (editUniversity.ShowDialog() == DialogResult.OK)
+            {
+                universities.ChangeUniversityById(choosenUn.Id, editUniversity.GetUniversity);
+                Binding();
+            }
         }
     }
 }

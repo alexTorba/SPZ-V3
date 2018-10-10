@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace Lb1
 {
-   
     class Program
     {
 
