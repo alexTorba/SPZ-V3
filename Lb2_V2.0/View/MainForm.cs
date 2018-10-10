@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace Lb2_V2._0
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
 
         List<University> universities = new List<University>();
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
 
@@ -55,6 +55,16 @@ namespace Lb2_V2._0
             if (editUniversity.ShowDialog() == DialogResult.OK)
             {
                 universities.ChangeUniversityById(choosenUn.Id, editUniversity.GetUniversity);
+                Binding();
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MergeUniversities mergeUniversities = new MergeUniversities(universities);
+            if (mergeUniversities.ShowDialog() == DialogResult.OK)
+            {
+                this.universities.Add(mergeUniversities.University);
                 Binding();
             }
         }

@@ -28,6 +28,5 @@ namespace Lb1
                     new Random(Guid.NewGuid().GetHashCode()).Next(55, 100);
             }
         }
-
     }
 }

@@ -14,6 +14,7 @@ namespace Lb2_V2._0
     {
         University university;
         bool isLoad = false;
+
         public EditUniversity()
         {
             InitializeComponent();

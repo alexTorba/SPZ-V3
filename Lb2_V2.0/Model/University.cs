@@ -23,7 +23,12 @@ namespace Lb2_V2._0
 
         public University()
         {
-            Id = new Random((int)DateTime.Now.Ticks).Next(0, 100000);
+            Id = GetRandomId(321);
+        }
+
+        private static int GetRandomId(int seed)
+        {
+            return new Random((int)DateTime.Now.Ticks + seed).Next(0, 100000);
         }
 
         public University(string name, int countFaculty, int countLaboratories,
@@ -130,16 +135,14 @@ namespace Lb2_V2._0
 
         public int GetHashCode(University obj)
         {
-            return obj.CountEmployee ^ obj.CountFaculty ^ obj.CountLaboratories
-                ^ obj.CountLectureHalls ^ obj.CountProfessors ^ obj.CountStudents +
-               CountEmployee ^ CountFaculty ^ CountLaboratories
-                ^ CountLectureHalls ^ CountProfessors ^ CountStudents;
+            return Id ^ obj.Id;
         }
 
         #endregion
 
         public static University operator +(University first, University second)
         {
+
             University rezult = new University
             {
                 Name = first.Name + second.Name,
@@ -149,8 +152,8 @@ namespace Lb2_V2._0
                 CountLectureHalls = first.CountLectureHalls + second.CountLectureHalls,
                 CountProfessors = first.CountProfessors + second.CountProfessors,
                 CountStudents = first.CountStudents + second.CountStudents,
-                Id = first.GetHashCode(second)
-            };
+                Id = GetRandomId(123) ^ GetRandomId(355)
+        };
 
             return rezult;
         }
