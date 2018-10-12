@@ -43,6 +43,7 @@ namespace Lb3
             Stopwatch stopwatch = new Stopwatch();
 
             stopwatch.Start();
+
             for (int i = 0; i < GetTimeToExecuteTask(); i++)
             {
                 Thread.Sleep(10);
@@ -82,5 +83,6 @@ namespace Lb3
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(AdditionalInfomatoins);
             return hashCode;
         }
+        
     }
 }

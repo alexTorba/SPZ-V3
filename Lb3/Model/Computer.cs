@@ -13,12 +13,17 @@ namespace Lb3
         public int CountOfTasks { get => Tasks.Count; }
         public bool PrepareToWork { get; set; }
 
+        public Computer()
+        {
+            Tasks = new List<UsersTask>();
+        }
+
         public static bool operator ==(Computer first, Computer second)
         {
             if (first == null || second == null)
                 return false;
 
-            if (first == second)
+            if (ReferenceEquals(first, second))
                 return true;
 
             if (first.Tasks.SequenceEqual(second.Tasks) &&
@@ -38,6 +43,7 @@ namespace Lb3
         {
             return Name;
         }
+
         //public override bool Equals(object obj)
         //{
         //    var computer = obj as Computer;
@@ -57,6 +63,5 @@ namespace Lb3
         //    hashCode = hashCode * -1521134295 + PrepareToWork.GetHashCode();
         //    return hashCode;
         //}
-
     }
 }
