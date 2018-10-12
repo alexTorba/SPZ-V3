@@ -8,3 +8,5 @@ C:\Users\Александр\source\repos\Spz-V3\Lb3\bin\Debug\Lb3.exe
 C:\Users\Александр\source\repos\Spz-V3\Lb3\bin\Debug\Lb3.pdb
 C:\Users\Александр\source\repos\Spz-V3\Lb3\obj\Debug\Lb3.exe
 C:\Users\Александр\source\repos\Spz-V3\Lb3\obj\Debug\Lb3.pdb
+C:\Users\Александр\source\repos\Spz-V3\Lb3\obj\Debug\Lb3.AddPC.resources
+C:\Users\Александр\source\repos\Spz-V3\Lb3\obj\Debug\Lb3.AddTask.resources

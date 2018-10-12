@@ -15,6 +15,12 @@ namespace Lb3
         public bool AvailabilityOfRouter { get; set; }
         public string WiFiPassword { get; set; }
 
+        public ComputerManager()
+        {
+            Computers = new List<Computer>();
+            TasksDictionary = new Dictionary<int, UsersTask>();
+        }
+
         #region Methods
 
         public void AssignTaskToComputer(UsersTask usersTask, Computer computer)

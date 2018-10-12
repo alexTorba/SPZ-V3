@@ -48,7 +48,25 @@
   <ItemGroup>
     <Compile Include="Model\Computer.cs" />
     <Compile Include="Model\ComputerManager.cs" />
+    <Compile Include="Model\Extenstion.cs" />
     <Compile Include="Model\UsersTask.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddPC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AddPC.Designer.cs">
+      <DependentUpon>AddPC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddTask.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AddTask.Designer.cs">
+      <DependentUpon>AddTask.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,13 +77,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
+    <EmbeddedResource Include="View\AddPC.resx">
+      <DependentUpon>AddPC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\AddTask.resx">
+      <DependentUpon>AddTask.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -84,6 +104,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="info.txt" />
+    <None Include="Resources\icons8_List_100px.png" />
+    <None Include="Resources\retro-pc-png-3.png" />
+    <None Include="Resources\logo-6.png" />
+    <None Include="Resources\icons8_Data_Transfer_50px.png" />
+    <None Include="Resources\files-09-512.png" />
+    <None Include="Resources\Retro_Tech_-_Ultra_-_056_-_Commodore_PET-512.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

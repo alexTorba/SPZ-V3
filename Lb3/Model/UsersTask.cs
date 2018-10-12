@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Lb3
 {
-    class UsersTask
+    public class UsersTask
     {
         public string Name { get; set; }
         /// <summary>
@@ -54,6 +54,11 @@ namespace Lb3
             stopwatch.Reset();
 
             DateOfCcompletion = DateTime.Now;
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
 
         public override bool Equals(object obj)

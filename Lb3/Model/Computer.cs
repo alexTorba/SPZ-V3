@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lb3
 {
-    class Computer
+    public class Computer
     {
         public string Name { get; set; }
         public List<UsersTask> Tasks { get; set; }
@@ -15,6 +15,9 @@ namespace Lb3
 
         public static bool operator ==(Computer first, Computer second)
         {
+            if (first == null || second == null)
+                return false;
+
             if (first == second)
                 return true;
 
@@ -31,25 +34,29 @@ namespace Lb3
             return !(first == second);
         }
 
-        public override bool Equals(object obj)
+        public override string ToString()
         {
-            var computer = obj as Computer;
-            return computer != null &&
-                   Name == computer.Name &&
-                   EqualityComparer<List<UsersTask>>.Default.Equals(Tasks, computer.Tasks) &&
-                   CountOfTasks == computer.CountOfTasks &&
-                   PrepareToWork == computer.PrepareToWork;
+            return Name;
         }
+        //public override bool Equals(object obj)
+        //{
+        //    var computer = obj as Computer;
+        //    return computer != null &&
+        //           Name == computer.Name &&
+        //           EqualityComparer<List<UsersTask>>.Default.Equals(Tasks, computer.Tasks) &&
+        //           CountOfTasks == computer.CountOfTasks &&
+        //           PrepareToWork == computer.PrepareToWork;
+        //}
 
-        public override int GetHashCode()
-        {
-            var hashCode = -936242408;
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Name);
-            hashCode = hashCode * -1521134295 + EqualityComparer<List<UsersTask>>.Default.GetHashCode(Tasks);
-            hashCode = hashCode * -1521134295 + CountOfTasks.GetHashCode();
-            hashCode = hashCode * -1521134295 + PrepareToWork.GetHashCode();
-            return hashCode;
-        }
+        //public override int GetHashCode()
+        //{
+        //    var hashCode = -936242408;
+        //    hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Name);
+        //    hashCode = hashCode * -1521134295 + EqualityComparer<List<UsersTask>>.Default.GetHashCode(Tasks);
+        //    hashCode = hashCode * -1521134295 + CountOfTasks.GetHashCode();
+        //    hashCode = hashCode * -1521134295 + PrepareToWork.GetHashCode();
+        //    return hashCode;
+        //}
 
     }
 }
