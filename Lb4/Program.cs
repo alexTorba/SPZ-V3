@@ -88,7 +88,7 @@ namespace Lb4
 				previous = current;
 			}
 
-			WriteNumber( streamWriter, currentSequenceLenght, ' ' );
+			WriteNumber( streamWriter, currentSequenceLenght, '\n' );
 			streamWriter.Dispose();
 			ouputStream.Dispose();
 		}
