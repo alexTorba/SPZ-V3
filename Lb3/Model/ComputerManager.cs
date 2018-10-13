@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace Lb3
 {
     class ComputerManager
     {
-        public List<Computer> Computers { get; set; }
+        public BindingList<Computer> Computers { get; set; }
         public Dictionary<int, UsersTask> TasksDictionary { get; set; }
         public int CountOfComputers { get => Computers.Count; }
         public int NumberOfJobs { get; set; }
@@ -17,7 +18,7 @@ namespace Lb3
 
         public ComputerManager()
         {
-            Computers = new List<Computer>();
+            Computers = new BindingList<Computer>();
             TasksDictionary = new Dictionary<int, UsersTask>();
         }
 
@@ -27,7 +28,7 @@ namespace Lb3
         {
             UsersTask task = TasksDictionary.First(t => t.Key == usersTask.GetHashCode()).Value;
 
-            Computer comp = Computers.Find(c => c.Equals(computer));
+            Computer comp = Computers.First(c => c.Equals(computer));
 
             comp.Tasks.Add(task);
         }
@@ -36,7 +37,7 @@ namespace Lb3
         {
             UsersTask task = TasksDictionary.First(t => t.Key == usersTask.GetHashCode()).Value;
 
-            Computer comp = Computers.Find(c => c.Equals(computer));
+            Computer comp = Computers.First(c => c.Equals(computer));
 
             comp.Tasks.Remove(task);
         }

@@ -13,12 +13,19 @@ namespace Lb3
     public partial class MainForm : Form
     {
         ComputerManager computerManager = new ComputerManager();
+        BindingSource bindingSource = new BindingSource();
 
         public MainForm()
         {
             InitializeComponent();
-            this.pcTasksListBox.DrawItem += Base_DrawItem;
-            this.pcTasksListBox.Sorted = false;
+
+            bindingSource.DataSource = computerManager;
+
+            pcTasksListBox.DrawItem += Base_DrawItem;
+            pcTasksListBox.Sorted = false;
+
+            pcComboBox.DataBindings.Add("DataSource", bindingSource, "Computers");
+
         }
 
 
@@ -28,9 +35,8 @@ namespace Lb3
             if (addPC.ShowDialog() == DialogResult.OK)
             {
                 computerManager.AddComputer(addPC.Computer);
-                pcComboBox.DataSource = computerManager.Computers.ToList();
+                pcTasksListBox.DataSource = addPC.Computer.Tasks;
             }
-
         }
 
         private void addTaskButton_Click(object sender, EventArgs e)
@@ -60,11 +66,8 @@ namespace Lb3
         /// </summary>
         /// <param name="pcTasks">Tasks list of computer</param>
         /// <param name="tasksList">General tasks list</param>
-        private void RefreshLists(List<UsersTask> pcTasks, List<UsersTask> tasksList)
+        private void RefreshLists(List<UsersTask> tasksList)
         {
-            if (pcTasks != null)
-                pcTasksListBox.DataSource = pcTasks.ToList();
-
             if (tasksList != null)
                 taskListBox.DataSource = tasksList.ToList();
         }
@@ -76,15 +79,15 @@ namespace Lb3
             if (usersTask == null) return;
 
             if (computerManager.TasksDictionary.Count != 0)
+            {
                 computerManager.TasksDictionary.Remove(usersTask.GetHashCode());
+                RefreshLists(computerManager.TasksDictionary.Values.ToList());
+            }
 
             Computer computer = pcComboBox.SelectedItem as Computer;
 
             if (!(computer is null))
-            {
                 computer.Tasks.Add(usersTask);
-                RefreshLists(computer.Tasks.ToList(), computerManager.TasksDictionary.Values.ToList());
-            }
             else MessageBox.Show("You should choose/add computer !");
 
         }
@@ -94,7 +97,9 @@ namespace Lb3
             ComboBox computers = sender as ComboBox;
             Computer computer = computers.SelectedValue as Computer;
 
-            pcTasksListBox.DataSource = computer.Tasks?.ToList();
+            //pcTasksListBox.DataSource = new BindingSource(computer, "Tasks");
+            pcTasksListBox.DataSource = computer.Tasks;
+            pcTasksListBox.Refresh();
         }
 
         private void ShowInfoOfDoneTask(UsersTask usersTask)
@@ -107,12 +112,10 @@ namespace Lb3
             MessageBox.Show(taskInfo, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             ((Computer)pcComboBox.SelectedItem).Tasks.Remove(usersTask);
-            RefreshLists(((Computer)pcComboBox.SelectedItem).Tasks, null);
         }
 
         private void pcTasksListBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-
             ListBox listBox = sender as ListBox;
             UsersTask usersTask = listBox.SelectedItem as UsersTask;
 
@@ -124,7 +127,7 @@ namespace Lb3
             }
 
             //check the state of computer, if its turn on change state of stateTask and ExecuteTask
-            if(!usersTask.PrepareToExecute(((Computer)pcComboBox.SelectedItem).PrepareToWork))
+            if (!usersTask.PrepareToExecute(((Computer)pcComboBox.SelectedItem).PrepareToWork))
             {
                 MessageBox.Show("Turn on the Computer !");
                 return;
@@ -184,17 +187,8 @@ namespace Lb3
             ListBox listBox = sender as ListBox;
             EditTask editTask = new EditTask((UsersTask)listBox.SelectedItem);
             if (editTask.ShowDialog() == DialogResult.OK)
-                RefreshLists(null, computerManager.TasksDictionary.Values.ToList());
+                RefreshLists(computerManager.TasksDictionary.Values.ToList());
         }
-
-        private void pcComboBox_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            ComboBox checkBox = sender as ComboBox;
-            var c = checkBox.SelectedItem as Computer;
-            MessageBox.Show(c.Name);
-
-        }
-
 
         private void pcComboBox_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -203,7 +197,10 @@ namespace Lb3
                 ComboBox checkBox = sender as ComboBox;
                 EditPcForm editPcForm = new EditPcForm((Computer)checkBox.SelectedItem);
                 if (editPcForm.ShowDialog() == DialogResult.OK)
+                {
                     pcComboBox.DataSource = computerManager.Computers.ToList();
+                    pcComboBox.Refresh();
+                }
             }
         }
     }

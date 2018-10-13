@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,13 +10,13 @@ namespace Lb3
     public class Computer
     {
         public string Name { get; set; }
-        public List<UsersTask> Tasks { get; set; }
+        public BindingList<UsersTask> Tasks { get; set; }
         public int CountOfTasks { get => Tasks.Count; }
         public bool PrepareToWork { get; set; }
 
         public Computer()
         {
-            Tasks = new List<UsersTask>();
+            Tasks = new BindingList<UsersTask>();
         }
 
         public static bool operator ==(Computer first, Computer second)
