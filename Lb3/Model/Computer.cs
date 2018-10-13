@@ -20,10 +20,15 @@ namespace Lb3
 
         public static bool operator ==(Computer first, Computer second)
         {
-            if (first == null || second == null)
+            if (second is null)
                 return false;
 
+
+
             if (ReferenceEquals(first, second))
+                return true;
+
+            if (object.Equals(first, second))
                 return true;
 
             if (first.Tasks.SequenceEqual(second.Tasks) &&

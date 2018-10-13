@@ -8,6 +8,13 @@ using System.Threading.Tasks;
 
 namespace Lb3
 {
+    public enum TaskStatus
+    {
+        NotPerformed,
+        TaskInProgress,
+        TaskIsDone
+    }
+
     public class UsersTask
     {
         public string Name { get; set; }
@@ -15,8 +22,8 @@ namespace Lb3
         /// Value in seconds
         /// </summary>
         public DateTime LeadTime { get; set; }
-        public DateTime DateOfCcompletion { get; set; }
-        public bool IsDone { get; set; }
+        public DateTime DateOfCompletion { get; set; }
+        public TaskStatus TaskState { get; private set; } = TaskStatus.NotPerformed;
         public string AdditionalInfomatoins { get; set; }
 
         public UsersTask()
@@ -28,14 +35,19 @@ namespace Lb3
         {
             Name = usersTask.Name;
             LeadTime = usersTask.LeadTime;
-            DateOfCcompletion = usersTask.DateOfCcompletion;
-            IsDone = usersTask.IsDone;
+            DateOfCompletion = usersTask.DateOfCompletion;
+            TaskState = usersTask.TaskState;
             AdditionalInfomatoins = usersTask.AdditionalInfomatoins;
         }
 
         private int GetTimeToExecuteTask()
         {
-            return new Random((int)DateTime.Now.Ticks).Next(0, 15);
+            return new Random((int)DateTime.Now.Ticks).Next(10, 30);
+        }
+
+        public void PrepareToExecute()
+        {
+            TaskState = TaskStatus.TaskInProgress;
         }
 
         public void ExecuteTask()
@@ -43,23 +55,28 @@ namespace Lb3
             Stopwatch stopwatch = new Stopwatch();
 
             stopwatch.Start();
-
             for (int i = 0; i < GetTimeToExecuteTask(); i++)
             {
-                Thread.Sleep(10);
+                Thread.Sleep(100);
             }
-            stopwatch.Start();
+            stopwatch.Stop();
+            TaskState = TaskStatus.TaskIsDone;
 
             LeadTime = new DateTime().AddMilliseconds(stopwatch.Elapsed.TotalMilliseconds);
+            DateOfCompletion = DateTime.Now;
 
             stopwatch.Reset();
 
-            DateOfCcompletion = DateTime.Now;
         }
 
         public override string ToString()
         {
-            return Name;
+            if (TaskState == TaskStatus.TaskIsDone)
+                return $"{Name}   {LeadTime.Millisecond}ms(done)";
+            else if (TaskState == TaskStatus.TaskInProgress)
+                return $"{Name}   (task in progress)";
+
+            return $"{Name}";
         }
 
         public override bool Equals(object obj)
@@ -68,8 +85,8 @@ namespace Lb3
             return task != null &&
                    Name == task.Name &&
                    LeadTime == task.LeadTime &&
-                   DateOfCcompletion == task.DateOfCcompletion &&
-                   IsDone == task.IsDone &&
+                   DateOfCompletion == task.DateOfCompletion &&
+                   TaskState == task.TaskState &&
                    AdditionalInfomatoins == task.AdditionalInfomatoins;
         }
 
@@ -78,11 +95,11 @@ namespace Lb3
             var hashCode = -1765437687;
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Name);
             hashCode = hashCode * -1521134295 + LeadTime.GetHashCode();
-            hashCode = hashCode * -1521134295 + DateOfCcompletion.GetHashCode();
-            hashCode = hashCode * -1521134295 + IsDone.GetHashCode();
+            hashCode = hashCode * -1521134295 + DateOfCompletion.GetHashCode();
+            hashCode = hashCode * -1521134295 + TaskState.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(AdditionalInfomatoins);
             return hashCode;
         }
-        
+
     }
 }

@@ -63,7 +63,7 @@
             // 
             // nameTextBox
             // 
-            this.nameTextBox.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nameTextBox.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nameTextBox.Location = new System.Drawing.Point(200, 39);
             this.nameTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.nameTextBox.Multiline = true;

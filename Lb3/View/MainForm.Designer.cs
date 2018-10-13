@@ -86,10 +86,11 @@
             // 
             // pcComboBox
             // 
+            this.pcComboBox.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.pcComboBox.FormattingEnabled = true;
             this.pcComboBox.Location = new System.Drawing.Point(108, 53);
             this.pcComboBox.Name = "pcComboBox";
-            this.pcComboBox.Size = new System.Drawing.Size(145, 28);
+            this.pcComboBox.Size = new System.Drawing.Size(145, 29);
             this.pcComboBox.TabIndex = 2;
             this.pcComboBox.SelectionChangeCommitted += new System.EventHandler(this.pcComboBox_SelectionChangeCommitted);
             // 
@@ -105,12 +106,14 @@
             // 
             // pcTasksListBox
             // 
+            this.pcTasksListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.pcTasksListBox.FormattingEnabled = true;
+            this.pcTasksListBox.HorizontalScrollbar = true;
             this.pcTasksListBox.ItemHeight = 20;
             this.pcTasksListBox.Location = new System.Drawing.Point(0, 156);
             this.pcTasksListBox.Name = "pcTasksListBox";
-            this.pcTasksListBox.Size = new System.Drawing.Size(298, 264);
-            this.pcTasksListBox.TabIndex = 2;
+            this.pcTasksListBox.Size = new System.Drawing.Size(296, 262);
+            this.pcTasksListBox.TabIndex = 0;
             this.pcTasksListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pcTasksListBox_MouseDoubleClick);
             // 
             // pictureBox1
@@ -186,6 +189,7 @@
             // 
             this.taskListBox.Font = new System.Drawing.Font("Century Gothic", 9F);
             this.taskListBox.FormattingEnabled = true;
+            this.taskListBox.HorizontalScrollbar = true;
             this.taskListBox.ItemHeight = 20;
             this.taskListBox.Location = new System.Drawing.Point(1, 156);
             this.taskListBox.Name = "taskListBox";
