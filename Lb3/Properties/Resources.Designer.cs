@@ -73,9 +73,29 @@ namespace Lb3.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_Computer_Support_96px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_Computer_Support_96px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_Data_Transfer_50px {
             get {
                 object obj = ResourceManager.GetObject("icons8_Data_Transfer_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_Edit_Property_104px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_Edit_Property_104px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

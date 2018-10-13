@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Lb3
 {
@@ -45,9 +46,14 @@ namespace Lb3
             return new Random((int)DateTime.Now.Ticks).Next(10, 30);
         }
 
-        public void PrepareToExecute()
+        public bool PrepareToExecute(bool stateOfComputer)
         {
-            TaskState = TaskStatus.TaskInProgress;
+            if (stateOfComputer)
+            {
+                TaskState = TaskStatus.TaskInProgress;
+                return true;
+            }
+            return false;
         }
 
         public void ExecuteTask()
@@ -66,15 +72,14 @@ namespace Lb3
             DateOfCompletion = DateTime.Now;
 
             stopwatch.Reset();
-
         }
 
         public override string ToString()
         {
             if (TaskState == TaskStatus.TaskIsDone)
-                return $"{Name}   {LeadTime.Millisecond}ms(done)";
+                return $"{Name} - {LeadTime.Millisecond}ms(well done)";
             else if (TaskState == TaskStatus.TaskInProgress)
-                return $"{Name}   (task in progress)";
+                return $"{Name} - (task in progress)";
 
             return $"{Name}";
         }

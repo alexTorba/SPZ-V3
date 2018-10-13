@@ -86,13 +86,15 @@
             // 
             // pcComboBox
             // 
-            this.pcComboBox.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.pcComboBox.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.pcComboBox.FormattingEnabled = true;
             this.pcComboBox.Location = new System.Drawing.Point(108, 53);
             this.pcComboBox.Name = "pcComboBox";
             this.pcComboBox.Size = new System.Drawing.Size(145, 29);
             this.pcComboBox.TabIndex = 2;
             this.pcComboBox.SelectionChangeCommitted += new System.EventHandler(this.pcComboBox_SelectionChangeCommitted);
+            this.pcComboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.pcComboBox_KeyPress);
+            this.pcComboBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pcComboBox_MouseDoubleClick);
             // 
             // label1
             // 
@@ -107,6 +109,7 @@
             // pcTasksListBox
             // 
             this.pcTasksListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.pcTasksListBox.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.pcTasksListBox.FormattingEnabled = true;
             this.pcTasksListBox.HorizontalScrollbar = true;
             this.pcTasksListBox.ItemHeight = 20;
@@ -137,7 +140,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox2.Location = new System.Drawing.Point(416, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(299, 420);
+            this.groupBox2.Size = new System.Drawing.Size(299, 418);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tasks";
@@ -187,7 +190,7 @@
             // 
             // taskListBox
             // 
-            this.taskListBox.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.taskListBox.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.taskListBox.FormattingEnabled = true;
             this.taskListBox.HorizontalScrollbar = true;
             this.taskListBox.ItemHeight = 20;
@@ -195,6 +198,7 @@
             this.taskListBox.Name = "taskListBox";
             this.taskListBox.Size = new System.Drawing.Size(296, 264);
             this.taskListBox.TabIndex = 2;
+            this.taskListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.taskListBox_MouseDoubleClick);
             // 
             // transferButton
             // 
@@ -212,7 +216,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(738, 448);
+            this.ClientSize = new System.Drawing.Size(738, 447);
             this.Controls.Add(this.transferButton);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);

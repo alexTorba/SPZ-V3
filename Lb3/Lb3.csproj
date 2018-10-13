@@ -67,6 +67,18 @@
     <Compile Include="View\AddTask.Designer.cs">
       <DependentUpon>AddTask.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\EditPcForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EditPcForm.Designer.cs">
+      <DependentUpon>EditPcForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditTask.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EditTask.Designer.cs">
+      <DependentUpon>EditTask.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +98,12 @@
     <EmbeddedResource Include="View\AddTask.resx">
       <DependentUpon>AddTask.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\EditPcForm.resx">
+      <DependentUpon>EditPcForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditTask.resx">
+      <DependentUpon>EditTask.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -104,6 +122,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="info.txt" />
+    <None Include="Resources\icons8_Computer_Support_96px.png" />
+    <None Include="Resources\icons8_Edit_Property_104px.png" />
     <None Include="Resources\icons8_List_100px.png" />
     <None Include="Resources\retro-pc-png-3.png" />
     <None Include="Resources\logo-6.png" />

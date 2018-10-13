@@ -62,7 +62,8 @@ namespace Lb3
         /// <param name="tasksList">General tasks list</param>
         private void RefreshLists(List<UsersTask> pcTasks, List<UsersTask> tasksList)
         {
-            pcTasksListBox.DataSource = pcTasks.ToList();
+            if (pcTasks != null)
+                pcTasksListBox.DataSource = pcTasks.ToList();
 
             if (tasksList != null)
                 taskListBox.DataSource = tasksList.ToList();
@@ -122,10 +123,16 @@ namespace Lb3
                 return;
             }
 
+            //check the state of computer, if its turn on change state of stateTask and ExecuteTask
+            if(!usersTask.PrepareToExecute(((Computer)pcComboBox.SelectedItem).PrepareToWork))
+            {
+                MessageBox.Show("Turn on the Computer !");
+                return;
+            }
+
             listBox.DrawItem -= Base_DrawItem;
             listBox.DrawItem += ExecuteTask_DrawItem;
 
-            usersTask.PrepareToExecute();
             //force the listbox to redraw itself (change color and task status)
             listBox.Refresh();
             usersTask.ExecuteTask();
@@ -172,5 +179,32 @@ namespace Lb3
             }
         }
 
+        private void taskListBox_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ListBox listBox = sender as ListBox;
+            EditTask editTask = new EditTask((UsersTask)listBox.SelectedItem);
+            if (editTask.ShowDialog() == DialogResult.OK)
+                RefreshLists(null, computerManager.TasksDictionary.Values.ToList());
+        }
+
+        private void pcComboBox_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ComboBox checkBox = sender as ComboBox;
+            var c = checkBox.SelectedItem as Computer;
+            MessageBox.Show(c.Name);
+
+        }
+
+
+        private void pcComboBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                ComboBox checkBox = sender as ComboBox;
+                EditPcForm editPcForm = new EditPcForm((Computer)checkBox.SelectedItem);
+                if (editPcForm.ShowDialog() == DialogResult.OK)
+                    pcComboBox.DataSource = computerManager.Computers.ToList();
+            }
+        }
     }
 }
