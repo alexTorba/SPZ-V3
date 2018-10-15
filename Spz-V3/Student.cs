@@ -28,7 +28,7 @@ namespace Lb1
             {
                 if (value.IsEmptyOrContainNumber())
                     throw new ArgumentException("name can't have spaces or numbers");
-                else name = value;
+                name = value;
             }
         }
 
@@ -39,7 +39,7 @@ namespace Lb1
             {
                 if (value.Contains(" "))
                     throw new ArgumentException("Record book can't have a spaces");
-                else recordBook = value;
+                recordBook = value;
             }
         }
 
@@ -52,39 +52,37 @@ namespace Lb1
             get
             {
                 double avaragePoint = 0;
-                foreach (KeyValuePair<Subjects, int> mark in Marks)
+                foreach (KeyValuePair<Subjects, int> mark in marks)
                 {
                     avaragePoint += mark.Value;
                 }
-                return avaragePoint / Marks.Count;
+                return avaragePoint / MarksCount;
             }
         }
-
 
         private Dictionary<Subjects, int> marks;
-        public Dictionary<Subjects, int> Marks
+        public void addMark( Subjects _subjects, int _mark )
         {
-            get => marks;
-            set
-            {
-                foreach (var mark in value.Values)
-                {
-                    if (mark > 100 && mark < 0)
-                        throw new ArgumentException("mark have to be in the range from 0 to 100 ");
-                }
-                marks = value;
-            }
+            if (_mark > 100 || _mark < 0)
+                throw new ArgumentException("mark have to be in the range from 0 to 100 ");
+            marks[ _subjects ] = _mark;
         }
+
 
         public int this[Subjects index]
         {
-            get => this.marks[index];
-            set => this.marks[index] = value;
+            get => marks[index];
+            set
+            {
+                addMark(index, value);
+            }
         }
+
+        public int MarksCount { get { return marks.Count; } }
 
         public Student()
         {
-            this.Marks = new Dictionary<Subjects, int>()
+            marks = new Dictionary<Subjects, int>()
             {
                 {Subjects.ComputerArchitecture, 0 },
                 {Subjects.Databases, 0 },
@@ -111,9 +109,9 @@ namespace Lb1
         {
             List<int> rezult = new List<int>();
 
-            for (int i = 0; i < secondStudent.Marks.Count; i++)
+            for (int i = 0; i < secondStudent.MarksCount; i++)
             {
-                int diff = secondStudent.Marks[(Subjects)i] - this.Marks[(Subjects)i];
+                int diff = secondStudent.marks[(Subjects)i] - this.marks[(Subjects)i];
 
                 rezult.Add(diff);
             }

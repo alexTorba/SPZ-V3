@@ -22,9 +22,9 @@ namespace Lb1
 
         public static void FillMarks(this Student student)
         {
-            for (int i = 0; i < student.Marks.Count; i++)
+            for (int i = 0; i < student.MarksCount; i++)
             {
-                student.Marks[(Subjects)i] =
+                student[(Subjects)i] =
                     new Random(Guid.NewGuid().GetHashCode()).Next(55, 100);
             }
         }
