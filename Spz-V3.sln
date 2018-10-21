@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lb3", "Lb3\Lb3.csproj", "{C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lb4", "Lb4\Lb4.csproj", "{CC61B44C-6D3F-4AFA-9CF7-D9C24440E54A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lb5", "Lb5\Lb5.csproj", "{824BCFCD-B6FF-47E9-871C-2F4B0C66E755}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lb8", "Lb8\Lb8.csproj", "{C1556463-4BA0-4590-B9CA-910BFBFA6923}"
 EndProject
 Global
@@ -41,6 +43,10 @@ Global
 		{CC61B44C-6D3F-4AFA-9CF7-D9C24440E54A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC61B44C-6D3F-4AFA-9CF7-D9C24440E54A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC61B44C-6D3F-4AFA-9CF7-D9C24440E54A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{824BCFCD-B6FF-47E9-871C-2F4B0C66E755}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{824BCFCD-B6FF-47E9-871C-2F4B0C66E755}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{824BCFCD-B6FF-47E9-871C-2F4B0C66E755}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{824BCFCD-B6FF-47E9-871C-2F4B0C66E755}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C1556463-4BA0-4590-B9CA-910BFBFA6923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C1556463-4BA0-4590-B9CA-910BFBFA6923}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1556463-4BA0-4590-B9CA-910BFBFA6923}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -50,6 +56,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A45C0A53-F151-463D-8F2F-8120367585F1}
+		SolutionGuid = {95DBBDCE-F09E-4BCB-B4EE-6D32976444BF}
+		    SolutionGuid = {A45C0A53-F151-463D-8F2F-8120367585F1}
 	EndGlobalSection
 EndGlobal
