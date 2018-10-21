@@ -1,5 +1,25 @@
 .vs/
 
+# Lab 1
+Spz-V3/bin/
+Spz-V3/obj/
+
+# Lab 2
+Lb4/bin/
+Lb4/obj/
+
+# Lab 2_v2
+Lb2_V2.0/bin/
+Lb2_V2.0/obj/
+
+# Lab 3
+Lb3/bin/
+Lb3/obj/
+
 # Lab 4
 Lb4/bin/
 Lb4/obj/
+
+# Lab 8
+Lb8/bin/
+Lb8/obj/
