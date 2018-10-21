@@ -141,33 +141,22 @@ namespace Lb6
 			t.Start();
 		}
 
-		public void runParallel()
+		 public void runParallel()
 		{
-			Thread buyThread = new Thread(
-				() =>
-				{
-					buyRaw();
-				}
-			);
+            //Task.Factory.StartNew(buyRaw);
+            //Task.Factory.StartNew(makeProduct);
+            //Task.Factory.StartNew(sellProduct);
 
-			Thread ProductThread = new Thread(
-				() =>
-				{
-					makeProduct();
-				}
-			);
+            Thread buyThread = new Thread(buyRaw);
 
-			Thread SellThread = new Thread(
-				() =>
-				{
-					sellProduct();
-				}
-			);
+            Thread ProductThread = new Thread(makeProduct);
 
-			buyThread.Start();
-			ProductThread.Start();
-			SellThread.Start();
-		}
+            Thread SellThread = new Thread(sellProduct);
+            
+            buyThread.Start();
+            ProductThread.Start();
+            SellThread.Start();
+        }
 
 		private void saveResult(string _message)
 		{

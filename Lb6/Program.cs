@@ -13,6 +13,8 @@ namespace Lb6
 		{
 			Factory fac = new Factory();
 			fac.runParallel();
+
+            Console.ReadKey();
 		}
 	}
 }

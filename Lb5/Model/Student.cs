@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,13 +13,15 @@ namespace Lb5
         public string LastName { get; set; }
         public string MiddleName { get; set; }
 
-        public List<Subject> subjects = new List<Subject>();
+        public BindingList<Subject> Subjects { get; set; }
 
         public Student(string firstName, string lastName, string middleName)
         {
             FirstName = firstName;
             LastName = lastName;
             MiddleName = middleName;
+
+            Subjects = new BindingList<Subject>();
         }
 
     }
