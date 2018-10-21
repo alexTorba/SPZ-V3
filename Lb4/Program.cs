@@ -53,36 +53,47 @@ namespace Lb4
 					continue;
 				}
 
-				if ( sign == SequenceSign.Falling )
+				switch ( sign )
 				{
-					if ( previous > current )
-						++currentSequenceLenght;
-					else
+					case SequenceSign.Growing:
 					{
-						WriteNumber( streamWriter, currentSequenceLenght, ' ' );
-						sign = SequenceSign.Growing;
-						currentSequenceLenght = 2;
+						if ( previous < current )
+							++currentSequenceLenght;
+						else
+						{
+							WriteNumber( streamWriter, currentSequenceLenght, ' ' );
+							sign = SequenceSign.Falling;
+							currentSequenceLenght = 2;
+						}
 					}
-				}
-				else if ( sign == SequenceSign.Growing )
-				{
-					if ( previous < current )
-						++currentSequenceLenght;
-					else
-					{
-						WriteNumber( streamWriter, currentSequenceLenght, ' ' );
-						sign = SequenceSign.Falling;
-						currentSequenceLenght = 2;
-					}
-				}
-				if ( sign == SequenceSign.NonDefined )
-				{
-					if ( previous < current )
-						sign = SequenceSign.Growing;
-					else
-						sign = SequenceSign.Falling;
+					break;
 
-					currentSequenceLenght = 2;
+					case SequenceSign.Falling:
+					{
+						if ( previous > current )
+							++currentSequenceLenght;
+						else
+						{
+							WriteNumber( streamWriter, currentSequenceLenght, ' ' );
+							sign = SequenceSign.Growing;
+							currentSequenceLenght = 2;
+						}
+					}
+					break;
+
+					case SequenceSign.NonDefined:
+					{
+						if ( previous < current )
+							sign = SequenceSign.Growing;
+						else
+							sign = SequenceSign.Falling;
+
+						currentSequenceLenght = 2;
+					}
+					break;
+
+					default:
+						break;
 				}
 
 				previous = current;
