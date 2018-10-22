@@ -33,8 +33,10 @@
 			this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.openFile = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveFile = new System.Windows.Forms.ToolStripMenuItem();
-			this.closeFile = new System.Windows.Forms.ToolStripMenuItem();
 			this.chooseMenu = new System.Windows.Forms.ToolStripMenuItem();
+			this.chooseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.saveToRegisterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.removeFromRegisterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menu.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -66,8 +68,7 @@
 			// 
 			this.fileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openFile,
-            this.saveFile,
-            this.closeFile});
+            this.saveFile});
 			this.fileMenu.Name = "fileMenu";
 			this.fileMenu.Size = new System.Drawing.Size(37, 20);
 			this.fileMenu.Text = "File";
@@ -84,18 +85,38 @@
 			this.saveFile.Name = "saveFile";
 			this.saveFile.Size = new System.Drawing.Size(180, 22);
 			this.saveFile.Text = "Save";
-			// 
-			// closeFile
-			// 
-			this.closeFile.Name = "closeFile";
-			this.closeFile.Size = new System.Drawing.Size(180, 22);
-			this.closeFile.Text = "Close";
+			this.saveFile.Click += SaveFile_Click;
 			// 
 			// chooseMenu
 			// 
+			this.chooseMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.chooseToolStripMenuItem,
+            this.saveToRegisterToolStripMenuItem,
+            this.removeFromRegisterToolStripMenuItem});
 			this.chooseMenu.Name = "chooseMenu";
-			this.chooseMenu.Size = new System.Drawing.Size(86, 20);
-			this.chooseMenu.Text = "Choose Font";
+			this.chooseMenu.Size = new System.Drawing.Size(43, 20);
+			this.chooseMenu.Text = "Font";
+			// 
+			// chooseToolStripMenuItem
+			// 
+			this.chooseToolStripMenuItem.Name = "chooseToolStripMenuItem";
+			this.chooseToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+			this.chooseToolStripMenuItem.Text = "Choose";
+			this.chooseToolStripMenuItem.Click += ChooseFont_Clicked;
+			// 
+			// saveToRegisterToolStripMenuItem
+			// 
+			this.saveToRegisterToolStripMenuItem.Name = "saveToRegisterToolStripMenuItem";
+			this.saveToRegisterToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+			this.saveToRegisterToolStripMenuItem.Text = "Save to register";
+			this.saveToRegisterToolStripMenuItem.Click += SaveToRegister_Clicked;
+			// 
+			// removeFromRegisterToolStripMenuItem
+			// 
+			this.removeFromRegisterToolStripMenuItem.Name = "removeFromRegisterToolStripMenuItem";
+			this.removeFromRegisterToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+			this.removeFromRegisterToolStripMenuItem.Text = "Remove from register";
+			this.removeFromRegisterToolStripMenuItem.Click += RemoveFromRegister_Clicked;
 			// 
 			// MainForm
 			// 
@@ -121,8 +142,10 @@
 		private System.Windows.Forms.ToolStripMenuItem fileMenu;
 		private System.Windows.Forms.ToolStripMenuItem openFile;
 		private System.Windows.Forms.ToolStripMenuItem saveFile;
-		private System.Windows.Forms.ToolStripMenuItem closeFile;
 		private System.Windows.Forms.ToolStripMenuItem chooseMenu;
+		private System.Windows.Forms.ToolStripMenuItem chooseToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem saveToRegisterToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem removeFromRegisterToolStripMenuItem;
 	}
 }
 
