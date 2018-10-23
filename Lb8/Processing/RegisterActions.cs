@@ -18,18 +18,13 @@ namespace Lb8
 			RegistryKey hkSoftware = Registry.CurrentUser.OpenSubKey( "Software" );
 			RegistryKey hkLab = hkSoftware.OpenSubKey( "Lab_SPZ" );
 
-			string fontAsString = hkLab?.GetValue( "Font" ) as string;
-			Font result = null;
-
-			if ( fontAsString == null )
-				result = new Font( "Times New Roman", 13.0f );
+			if ( !( hkLab?.GetValue( "Font" ) is string fontAsString ) )
+				return new Font( "Times New Roman", 13.0f );
 			else
 			{
 				FontConverter fontConverter = new FontConverter();
-				result = fontConverter.ConvertFromString( fontAsString ) as Font;
+				return fontConverter.ConvertFromString( fontAsString ) as Font;
 			}
-
-			return result;
 		}
 
 		//---------------------------------------------------------------------

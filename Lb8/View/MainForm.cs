@@ -23,7 +23,7 @@ namespace Lb8
 
 		//---------------------------------------------------------------------
 
-		private void OpenFile_Click( object sender, EventArgs e )
+		private void OpenFile_Click( object _sender, EventArgs _e )
 		{
 			if ( !SelectFile() )
 				return;
@@ -33,7 +33,7 @@ namespace Lb8
 
 		//---------------------------------------------------------------------
 
-		private void SaveFile_Click( object sender, EventArgs e )
+		private void SaveFile_Click( object _sender, EventArgs _e )
 		{
 			if( FileName == null )
 				if ( !SelectFile() )
@@ -44,7 +44,7 @@ namespace Lb8
 
 		//---------------------------------------------------------------------
 
-		private void ChooseFont_Clicked( object sender, EventArgs e )
+		private void ChooseFont_Clicked( object _sender, EventArgs _e )
 		{
 			FontDialog fontDialog = new FontDialog();
 			DialogResult result = fontDialog.ShowDialog();
@@ -57,16 +57,27 @@ namespace Lb8
 
 		//---------------------------------------------------------------------
 
-		private void SaveToRegister_Clicked( object sender, EventArgs e )
+		private void SaveToRegister_Clicked( object _sender, EventArgs _e )
 		{
 			RegisterActions.SaveToRegister( fileText.Font );
 		}
 
 		//---------------------------------------------------------------------
 
-		private void RemoveFromRegister_Clicked( object sender, EventArgs e )
+		private void RemoveFromRegister_Clicked( object _sender, EventArgs _e )
 		{
 			RegisterActions.RemoveFromRegister();
+		}
+
+		//---------------------------------------------------------------------
+
+		void Form_KeyDown( object _sender, KeyEventArgs _e )
+		{
+			if ( _e.Control && _e.KeyCode == Keys.S )
+				SaveFile_Click( _sender, _e );
+
+			else if ( _e.Control && _e.KeyCode == Keys.O )
+				OpenFile_Click( _sender, _e );
 		}
 
 		//---------------------------------------------------------------------

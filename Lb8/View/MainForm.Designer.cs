@@ -1,4 +1,6 @@
-﻿namespace Lb8
+﻿using System.Windows.Forms;
+
+namespace Lb8
 {
 	partial class MainForm
 	{
@@ -128,6 +130,8 @@
 			this.MainMenuStrip = this.menu;
 			this.Name = "MainForm";
 			this.Text = "Lb8";
+			this.KeyPreview = true;
+			this.KeyDown += new KeyEventHandler( Form_KeyDown );
 			this.menu.ResumeLayout(false);
 			this.menu.PerformLayout();
 			this.ResumeLayout(false);
