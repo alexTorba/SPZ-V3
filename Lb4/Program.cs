@@ -32,7 +32,7 @@ namespace Lb4
             Run(numbers);
         }
 
-        public static void Run(string[] _numbers)
+        public static void Run( string[] _numbers )
         {
             FileStream ouputStream = new FileStream(@"../../numbers.out", FileMode.Truncate, FileAccess.Write);
             StreamWriter streamWriter = new StreamWriter(ouputStream);
@@ -43,7 +43,7 @@ namespace Lb4
             int currentSequenceLenght = 0;
             double previous = -1;
 
-            foreach (var strNumber in _numbers)
+            foreach ( var strNumber in _numbers )
             {
                 double current = Double.Parse(strNumber, culture);
 
