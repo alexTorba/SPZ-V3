@@ -40,7 +40,18 @@ namespace Lb4_GUI
 
 		private void SaveResultMenuItem_Click( object sender, EventArgs e )
 		{
+			SaveFileDialog saveFileDialog = new SaveFileDialog();
+			saveFileDialog.Filter = "out files (*.out)|*.out";
+			saveFileDialog.RestoreDirectory = true;
 
+			saveFileDialog.ShowDialog();
+
+			if ( string.IsNullOrEmpty( saveFileDialog.FileName ) )
+				return;
+
+			using ( FileStream fileStream = new FileStream( saveFileDialog.FileName, FileMode.OpenOrCreate ) )
+				using ( StreamWriter streamWriter = new StreamWriter( fileStream ) )
+					streamWriter.WriteLine( ResultTB.Text );
 		}
 
 		private void GenerateNumbersB_Click( object sender, EventArgs e )

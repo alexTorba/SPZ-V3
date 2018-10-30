@@ -75,14 +75,14 @@
 			// OpenMenuItem
 			// 
 			this.OpenMenuItem.Name = "OpenMenuItem";
-			this.OpenMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.OpenMenuItem.Size = new System.Drawing.Size(133, 22);
 			this.OpenMenuItem.Text = "Open";
 			this.OpenMenuItem.Click += new System.EventHandler(this.OpenMenuItem_Click);
 			// 
 			// SaveResultMenuItem
 			// 
 			this.SaveResultMenuItem.Name = "SaveResultMenuItem";
-			this.SaveResultMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.SaveResultMenuItem.Size = new System.Drawing.Size(133, 22);
 			this.SaveResultMenuItem.Text = "Save Result";
 			this.SaveResultMenuItem.Click += new System.EventHandler(this.SaveResultMenuItem_Click);
 			// 
