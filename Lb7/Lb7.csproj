@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,16 +48,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="View\Form1.cs">
+    <Compile Include="Model\DataManager.cs" />
+    <Compile Include="Model\IDataManage.cs" />
+    <Compile Include="Model\StudentsDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StudentsDB.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presenter\MainFormPresenter.cs" />
+    <Compile Include="Presenter\StudentInfoPresenter.cs" />
+    <Compile Include="View\IMainForm.cs" />
+    <Compile Include="View\IStudentInfo.cs" />
+    <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="View\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="View\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="View\StudentInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\StudentInfoForm.Designer.cs">
+      <DependentUpon>StudentInfoForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="View\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -66,6 +85,20 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\StudentInfoForm.resx">
+      <DependentUpon>StudentInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Model\StudentsDB.xsc">
+      <DependentUpon>StudentsDB.xsd</DependentUpon>
+    </None>
+    <None Include="Model\StudentsDB.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StudentsDB.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Model\StudentsDB.xss">
+      <DependentUpon>StudentsDB.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -79,9 +112,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Model\" />
-    <Folder Include="Presenter\" />
+    <Content Include="info.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
