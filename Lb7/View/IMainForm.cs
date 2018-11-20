@@ -8,8 +8,14 @@ namespace Lb7.View
 {
     interface IMainForm
     {
-        event EventHandler LoadForm;
         object StudentGridDataSource { get; set; }
         object SubjectGridDataSource { get; set; }
+
+        object CurrentStudentRow { get; }
+        object CurrentSubjectRow { get; }
+        event EventHandler DeleteStudent;
+        event EventHandler DeleteSubject;
+        event EventHandler LoadForm;
+        event EventHandler ClosingForm;
     }
 }

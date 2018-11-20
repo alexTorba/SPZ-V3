@@ -11,33 +11,33 @@ namespace Lb7.Presenter
 {
     class StudentInfoPresenter
     {
-        readonly IStudentInfo studentInfo;
-        public StudentInfoPresenter(IStudentInfo studentInfo)
+        readonly IStudentBoard studentInfo;
+        public StudentInfoPresenter(IStudentBoard studentInfo)
         {
             this.studentInfo = studentInfo;
 
             studentInfo.FormLoad += StudentInfo_FormLoad;
+            studentInfo.ClosingForm += StudentInfo_ClosingForm;
+        }
+
+        private void StudentInfo_ClosingForm(object sender, EventArgs e)
+        {
+            EFGenericRepository.SaveChanges();
         }
 
         private void StudentInfo_FormLoad(object sender, EventArgs e)
         {
-            var student = DataManager.GetStudents().FindById(studentInfo.SutdentId);
+            var student = EFGenericRepository.FindById<Students>(studentInfo.SutdentId);
 
             studentInfo.FirstName = student.FirstName;
             studentInfo.LastName = student.LastName;
             studentInfo.MiddleName = student.MiddleName;
 
-            var query = from s in DataManager.GetStudents().Where(st=>st.Id == student.Id)
-                        join m in DataManager.GetMarks() on s.Id equals m.IdSt
-                        join sub in DataManager.GetSubjects() on m.IdSub equals sub.Id
-                        select new
-                        {
-                            Subject = sub.Name,
-                            Mark = m.Value
-                        };
+            var marks = from s in EFGenericRepository.Get<Students>().Where(st => st.Id == student.Id)
+                        join m in EFGenericRepository.Get<Marks>() on s.Id equals m.IdSt
+                        select m;
 
-            studentInfo.GridDataSource = query.ToList();
-
+            studentInfo.GridDataSource = marks.ToList();
         }
     }
 }

@@ -35,8 +35,17 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,17 +57,51 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\DataManager.cs" />
-    <Compile Include="Model\IDataManage.cs" />
+    <Compile Include="Model\EFGenericRepository.cs" />
+    <Compile Include="Model\Marks.cs">
+      <DependentUpon>StudentsDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Students.cs">
+      <DependentUpon>StudentsDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\StudentsDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StudentsDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\StudentsDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StudentsDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\StudentsDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StudentsDB.xsd</DependentUpon>
+      <DependentUpon>StudentsDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Model\Subjects.cs">
+      <DependentUpon>StudentsDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Presenter\AddStudentFormPresenter.cs" />
+    <Compile Include="Presenter\AddSubjectFormPresenter.cs" />
     <Compile Include="Presenter\MainFormPresenter.cs" />
     <Compile Include="Presenter\StudentInfoPresenter.cs" />
+    <Compile Include="View\AddStudentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AddStudentForm.Designer.cs">
+      <DependentUpon>AddStudentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddSubjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AddSubjectForm.Designer.cs">
+      <DependentUpon>AddSubjectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\IAddStudentFrom.cs" />
+    <Compile Include="View\IAddSubjectForm.cs" />
     <Compile Include="View\IMainForm.cs" />
-    <Compile Include="View\IStudentInfo.cs" />
+    <Compile Include="View\IStudentBoard.cs" />
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +116,12 @@
     <Compile Include="View\StudentInfoForm.Designer.cs">
       <DependentUpon>StudentInfoForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\AddStudentForm.resx">
+      <DependentUpon>AddStudentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\AddSubjectForm.resx">
+      <DependentUpon>AddSubjectForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -88,17 +137,14 @@
     <EmbeddedResource Include="View\StudentInfoForm.resx">
       <DependentUpon>StudentInfoForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Model\StudentsDB.xsc">
-      <DependentUpon>StudentsDB.xsd</DependentUpon>
-    </None>
-    <None Include="Model\StudentsDB.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
+    <EntityDeploy Include="Model\StudentsDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>StudentsDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\StudentsDB.edmx.diagram">
+      <DependentUpon>StudentsDB.edmx</DependentUpon>
     </None>
-    <None Include="Model\StudentsDB.xss">
-      <DependentUpon>StudentsDB.xsd</DependentUpon>
-    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -115,6 +161,19 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="info.txt" />
+    <Content Include="Model\StudentsDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>StudentsDB.Context.cs</LastGenOutput>
+      <DependentUpon>StudentsDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Model\StudentsDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>StudentsDB.edmx</DependentUpon>
+      <LastGenOutput>StudentsDB.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

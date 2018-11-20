@@ -12,8 +12,10 @@ using Lb7.Presenter;
 
 namespace Lb7.View
 {
-    public partial class StudentInfoForm : Form, IStudentInfo
+    public partial class StudentInfoForm : Form, IStudentBoard
     {
+        List<int> marks = new List<int>();
+
         public StudentInfoForm(int id)
         {
             InitializeComponent();
@@ -21,7 +23,6 @@ namespace Lb7.View
             SutdentId = id;
 
             StudentInfoPresenter studentInfoPresenter = new StudentInfoPresenter(this);
-
         }
 
         public int SutdentId { get; }
@@ -50,11 +51,29 @@ namespace Lb7.View
             set => dataGridView.DataSource = value;
         }
 
+        public IList<int> GetCurrentMarks => marks;
+
+
         public event EventHandler FormLoad;
+        public event EventHandler ClosingForm;
 
         private void StudentInfoForm_Load(object sender, EventArgs e)
         {
             FormLoad.Invoke(sender, e);
+            dataGridView.Columns["IdSt"].Visible = false;
+            dataGridView.Columns["IdSub"].Visible = false;
+            dataGridView.Columns["Students"].Visible = false;
+        }
+
+        private void StudentInfoForm_FormClosing_1(object sender, FormClosingEventArgs e)
+        {
+            ClosingForm?.Invoke(sender, e);
+
+        }
+
+        private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridView.CurrentCell.ReadOnly = false;
         }
     }
 }

@@ -8,6 +8,7 @@ using Lb7.View;
 
 namespace Lb7
 {
+
     static class Program
     {
         /// <summary>
