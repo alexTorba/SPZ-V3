@@ -1,112 +1,115 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Lb5
+using Lb5.Presenter;
+
+namespace Lb5.View
 {
-    public partial class MainForm : Form
-    {
-        BindingList<Student> students = new BindingList<Student>();
+	public partial class MainForm : Form, IMainForm
+	{
+		//---------------------------------------------------------------------------
 
-        BindingSource binding = new BindingSource();
+		public MainForm()
+		{
+			InitializeComponent();
+		}
 
-        public MainForm()
-        {
-            InitializeComponent();
+		//---------------------------------------------------------------------------
 
-            //bindingSource.DataSource = students;
-            //dataGridView.DataSource = bindingSource;
-        }
+		public object StudentGridDataSource
+		{
+			get => studentsDataGrid.DataSource;
+			set => studentsDataGrid.DataSource = value;
+		}
+		public object SubjectGridDataSource
+		{
+			get => subjectGridView.DataSource;
+			set => subjectGridView.DataSource = value;
+		}
 
-        private void CreateSubjectForDataGrid(List<Subject> subjects)
-        {
-            foreach (Subject subject in subjects)
-            {
-                int i = dataGridView.Columns.Add(subject.Name, subject.Name);
-                dataGridView.Rows.Insert(i, (object)subject.Mark);
-            }
-        }
+		public object CurrentStudentRow => studentsDataGrid.CurrentRow.DataBoundItem;
+		public object CurrentSubjectRow => subjectGridView.CurrentRow.DataBoundItem;
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            students.Add(new Student("Alex", "Torba", "Olegovich")
-            {
-                Subjects = new BindingList<Subject>
-                {
-                    new Subject("Mathematics", 75),
-                    new Subject("English", 76)
-                }
-            });
+		public event EventHandler LoadForm;
+		public event EventHandler ClosingForm;
+		public event EventHandler DeleteStudent;
+		public event EventHandler DeleteSubject;
+		public event EventHandler AddSubject;
+		public event EventHandler AddStudent;
+		public event EventHandler EditStudent;
 
-            students.Add(new Student("Valera", "Tchupikov", "Vlademerovich")
-            {
-                Subjects = new BindingList<Subject>
-                {
-                    new Subject("Mathematics", 60),
-                    new Subject("English", 75)
-                }
-            });
+		//---------------------------------------------------------------------------
 
-            binding.DataSource = students;
-            dataGridView.DataSource = binding;
-            
-        }
+		private void MainForm_Load( object sender, EventArgs e )
+		{
+			LoadForm?.Invoke( sender, e );
 
-        //private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        //{
-        //    MessageBox.Show(dataGridView.Rows[e.RowIndex].DataBoundItem.ToString());
+			//subjectGridView.Columns["Marks"].Visible = false;
+		}
 
-        //    if ((dataGridView.Rows[e.RowIndex].DataBoundItem != null) &&
-        //      (dataGridView.Columns[e.ColumnIndex].DataPropertyName.Contains(".")))
-        //    {
-        //        e.Value = BindProperty(
-        //                      dataGridView.Rows[e.RowIndex].DataBoundItem,
-        //                      dataGridView.Columns[e.ColumnIndex].DataPropertyName
-        //                    );
-        //    }
-        //}
+		private void InfoToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			EditStudent?.Invoke( sender, e );
+		}
 
-        //private string BindProperty(object property, string propertyName)
-        //{
-        //    string retValue = "";
+		private void studentsDataGrid_CellContextMenuStripNeeded(
+				object sender
+			,	DataGridViewCellContextMenuStripNeededEventArgs e
+		)
+		{
+			if ( e.ColumnIndex < 0 || e.RowIndex < 0 )
+				return;
 
-        //    if (propertyName.Contains("."))
-        //    {
-        //        PropertyInfo[] arrayProperties;
-        //        string leftPropertyName;
+			studentsDataGrid[e.ColumnIndex, e.RowIndex].Selected = true;
+			studentsContextMenuStrip.Show( new Point( Cursor.Position.X, Cursor.Position.Y ) );
+		}
 
-        //        leftPropertyName = propertyName.Substring(0, propertyName.IndexOf("."));
-        //        arrayProperties = property.GetType().GetProperties();
+		private void studentsDataGrid_CellDoubleClick( object sender, DataGridViewCellEventArgs e )
+		{
+			EditStudent?.Invoke( sender, e );
+			LoadForm?.Invoke( sender, e );
+		}
 
-        //        foreach (PropertyInfo propertyInfo in arrayProperties)
-        //        {
-        //            if (propertyInfo.Name == leftPropertyName)
-        //            {
-        //                retValue = BindProperty(
-        //                  propertyInfo.GetValue(property, null),
-        //                  propertyName.Substring(propertyName.IndexOf(".") + 1));
-        //                break;
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Type propertyType;
-        //        PropertyInfo propertyInfo;
+		private void MainForm_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			ClosingForm?.Invoke( sender, e );
+		}
 
-        //        propertyType = property.GetType();
-        //        propertyInfo = propertyType.GetProperty(propertyName);
-        //        retValue = propertyInfo.GetValue(property, null).ToString();
-        //    }
+		private void addToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			AddStudent?.Invoke( sender, e );
+		}
 
-        //    return retValue;
-        //}
-    }
+		private void deleteToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			DeleteStudent?.Invoke( sender, e );
+			LoadForm?.Invoke( sender, e );
+		}
+
+		private void subjectGridView_CellContextMenuStripNeeded(
+				object sender
+			,	DataGridViewCellContextMenuStripNeededEventArgs e
+		)
+		{
+			if ( e.ColumnIndex < 0 || e.RowIndex < 0 )
+				return;
+
+			subjectGridView[e.ColumnIndex, e.RowIndex].Selected = true;
+			subjectsContextMenuStrip.Show( new Point( Cursor.Position.X, Cursor.Position.Y ) );
+		}
+
+		private void addMenuItem_Click( object sender, EventArgs e )
+		{
+			AddSubject?.Invoke( sender, e );
+		}
+
+		private void toolStripMenuItem3_Click( object sender, EventArgs e )
+		{
+			DeleteSubject?.Invoke( sender, e );
+			LoadForm?.Invoke( sender, e );
+		}
+
+		//---------------------------------------------------------------------------
+	}
 }
