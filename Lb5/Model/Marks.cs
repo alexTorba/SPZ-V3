@@ -9,35 +9,43 @@ namespace Lb5.Model
 	{
 		//---------------------------------------------------------------------------
 
-		Dictionary< Student, SortedDictionary< Subject, int > > m_marks;
+		Dictionary< Student, List<KeyValuePair<Subject, int>>> m_marks;
 
 		//---------------------------------------------------------------------------
 
 		public Marks()
 		{
-			m_marks = new Dictionary< Student, SortedDictionary< Subject, int > >();
+			m_marks = new Dictionary< Student, List<KeyValuePair<Subject, int>> >();
 		}
 
 		//---------------------------------------------------------------------------
 
-		public void AddStudent( Student _student, SortedDictionary< Subject, int > _marks )
+		public void AddStudent( Student _student, List<KeyValuePair<Subject, int>> _marks )
 		{
 			m_marks.Add( _student, _marks );
 		}
 
-		public void SetMark( Student _student, Subject _subject, int _value )
+		//public void SetMark( Student _student, Subject _subject, int _value )
+		//{
+		//	var studentMarks = m_marks[_student];
+		//	studentMarks[_subject] = _value;
+		//}
+
+		public List<KeyValuePair<Subject, int>> GetStudentMarks( Student _stud )
 		{
-			var studentMarks = m_marks[_student];
-			studentMarks[_subject] = _value;
+			return m_marks[_stud];
 		}
 
 		//---------------------------------------------------------------------------
 
 		public void RemoveSubject( Subject _subject )
 		{
-			foreach ( var student in m_marks )
-				if ( student.Value.ContainsKey( _subject ) )
-					student.Value.Remove( _subject );
+			List<KeyValuePair<Subject, int>> list = new List<KeyValuePair<Subject, int>>();
+			list.RemoveAll( ( pair ) => pair.Key == _subject );
+
+			//foreach ( var student in m_marks )
+			//	if ( student.Value.ContainsKey( _subject ) )
+			//		student.Value.Remove( _subject );
 		}
 
 		public void RemoveStudent( Student _student )

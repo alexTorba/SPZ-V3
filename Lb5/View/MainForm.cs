@@ -44,8 +44,6 @@ namespace Lb5.View
 		private void MainForm_Load( object sender, EventArgs e )
 		{
 			LoadForm?.Invoke( sender, e );
-
-			//subjectGridView.Columns["Marks"].Visible = false;
 		}
 
 		private void InfoToolStripMenuItem_Click( object sender, EventArgs e )

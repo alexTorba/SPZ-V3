@@ -37,11 +37,7 @@ namespace Lb5.Presenter
 				MiddleName = m_addStudentBoard.MiddleName
 			};
 
-			SortedDictionary<Subject, int> result = new SortedDictionary<Subject, int>();
-			foreach ( var sub in marks )
-				result.Add( sub.Key, sub.Value );
-
-			m_model.AddStudent( student, result );
+			m_model.AddStudent( student, marks );
 		}
 
 		private void Student_FormLoad( object sender, EventArgs e )

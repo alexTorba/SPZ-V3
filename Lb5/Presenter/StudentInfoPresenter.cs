@@ -34,15 +34,11 @@ namespace Lb5.Presenter
 
 		private void StudentInfo_FormLoad( object sender, EventArgs e )
 		{
-			//m_studentInfoBoard.FirstName = m_student.FirstName;
-			//m_studentInfoBoard.LastName = m_student.LastName;
-			//m_studentInfoBoard.MiddleName = m_student.MiddleName;
+			m_studentInfoBoard.FirstName = m_student.FirstName;
+			m_studentInfoBoard.LastName = m_student.LastName;
+			m_studentInfoBoard.MiddleName = m_student.MiddleName;
 
-			//var marks = from s in EFGenericRepository.Get<Students>().Where( st => st.Id == student.Id )
-			//			join m in EFGenericRepository.Get<Marks>() on s.Id equals m.IdSt
-			//			select m;
-
-			//studentInfo.GridDataSource = marks.ToList();
+			m_studentInfoBoard.GridDataSource = m_model.GetStudentMarks( m_student );
 		}
 
 		//---------------------------------------------------------------------------

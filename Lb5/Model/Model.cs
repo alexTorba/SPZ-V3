@@ -20,7 +20,7 @@ namespace Lb5.Model
 
 		//---------------------------------------------------------------------------
 
-		public void AddStudent( Student _student, SortedDictionary< Subject, int > _marks )
+		public void AddStudent( Student _student, List<KeyValuePair<Subject, int>> _marks )
 		{
 			m_students.Add( _student );
 			m_marks.AddStudent( _student, _marks );
@@ -43,6 +43,11 @@ namespace Lb5.Model
 		{
 			m_subjects.Remove( _subject );
 			m_marks.RemoveSubject( _subject );
+		}
+
+		public List<KeyValuePair<Subject, int>> GetStudentMarks( Student _student )
+		{
+			return m_marks.GetStudentMarks( _student );
 		}
 
 		//---------------------------------------------------------------------------

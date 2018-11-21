@@ -10,7 +10,6 @@ namespace Lb5.View
 		string LastName { get; set; }
 		string MiddleName { get; set; }
 
-		IList<int> GetCurrentMarks { get; }
 		object GridDataSource { get; set; }
 
 		event EventHandler FormLoad;

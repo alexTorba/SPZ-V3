@@ -36,8 +36,6 @@ namespace Lb5.View
 			set => dataGridView.DataSource = value;
 		}
 
-		public IList<int> GetCurrentMarks => throw new NotImplementedException();
-
 		public event EventHandler FormLoad;
 		public event EventHandler SaveClick;
 
@@ -46,9 +44,6 @@ namespace Lb5.View
 		private void AddStudentForm_Load( object sender, EventArgs e )
 		{
 			FormLoad?.Invoke( sender, e );
-			dataGridView.Columns["IdSt"].Visible = false;
-			dataGridView.Columns["IdSub"].Visible = false;
-			dataGridView.Columns["Students"].Visible = false;
 		}
 
 		private void saveButton_Click( object sender, EventArgs e )
